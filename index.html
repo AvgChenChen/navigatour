@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigatour – Coming Soon</title>
+
+    <!-- Couture Font -->
+    <link href="https://fonts.cdnfonts.com/css/couture" rel="stylesheet">
+
+    <style>
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'COUTURE', sans-serif;
+            color: #fff;
+            height: 140vh;
+            background: #000;
+            overflow-x: hidden;
+            position: relative;
+            animation: breathing 8s ease-in-out infinite;
+        }
+
+        /* ---------- BREATHING BACKGROUND LIGHT ---------- */
+        @keyframes breathing {
+            0% { background-color: #000; }
+            50% { background-color: #080808; }
+            100% { background-color: #000; }
+        }
+
+        /* ---------- PRELOADER ---------- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #fff;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            filter: drop-shadow(0px 0px 10px #fff);
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+
+        /* ---------- 3D FLOATING LOGO ---------- */
+        .floating-logo {
+            position: fixed;
+            top: 20px;
+            left: 40px;
+            font-size: 32px;
+            letter-spacing: 4px;
+            text-transform: lowercase;
+            color: white;
+            transform-style: preserve-3d;
+            animation: float3D 6s ease-in-out infinite;
+        }
+
+        @keyframes float3D {
+            0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+            50% { transform: translateY(-10px) rotateX(10deg) rotateY(10deg); }
+            100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+        }
+
+
+        /* ---------- NAVIGATION BAR ---------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 18px;
+            text-transform: lowercase;
+            letter-spacing: 3px;
+            z-index: 10;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .navbar:hover {
+            text-shadow: 0 0 12px #fff;
+            transform: scale(1.03);
+        }
+
+
+        /* ---------- PARTICLES ---------- */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            top: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particles span {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: rgba(255,255,255,0.35);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 0.4; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+
+        /* ---------- MAIN CONTENT ---------- */
+        .content {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            filter: drop-shadow(0px 0px 12px #fff);
+        }
+
+
+        /* ---------- TYPING ANIMATION ---------- */
+        .coming-soon {
+            font-size: 55px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            border-right: 4px solid #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 2s steps(12) forwards,
+                       blink 0.8s infinite;
+        }
+
+        @keyframes typing { from { width: 0; } to { width: 460px; } }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+
+        /* ---------- GLASSMORPHIC SIGNUP BOX ---------- */
+        .glass-box {
+            margin-top: 40px;
+            padding: 25px 35px;
+            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            box-shadow: 0 4px 25px rgba(255,255,255,0.15);
+            display: flex;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeIn 2s forwards 2.4s;
+        }
+
+        input[type="email"] {
+            padding: 12px;
+            width: 260px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            font-family: Arial, sans-serif;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            background: #fff;
+            color: #000;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover { opacity: 0.85; }
+
+        .success {
+            margin-top: 15px;
+            color: #00ff00;
+            font-size: 16px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+
+        /* ---------- FOR RUNNERS ---------- */
+        .bottom-text {
+            position: absolute;
+            bottom: 40px;
+            font-size: 22px;
+            letter-spacing: 4px;
+            opacity: 0;
+            transform: translateY(20px);
+            filter: drop-shadow(0px 0px 10px #fff);
+            animation: rise 2s forwards 3s;
+        }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        /* ---------- AI CHAT BUBBLE ---------- */
+        .chat-bubble {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 70px;
+            height: 70px;
+            background: #fff;
+            border-radius: 50%;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+            transition: 0.3s;
+            z-index: 20;
+            animation: popIn 1s ease-out forwards 4s;
+            opacity: 0;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 25px #fff;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- FLOATING 3D LOGO -->
+    <div class="floating-logo">navigatour</div>
+
+    <!-- NAV BAR MOCKUP -->
+    <div class="navbar">menu</div>
+
+    <!-- PARTICLES -->
+    <div class="particles">
+        <span style="left:12%; animation-duration: 11s;"></span>
+        <span style="left:34%; animation-duration: 13s;"></span>
+        <span style="left:52%; animation-duration: 9s;"></span>
+        <span style="left:68%; animation-duration: 16s;"></span>
+        <span style="left:82%; animation-duration: 12s;"></span>
+    </div>
+
+    <!-- MAIN SECTION -->
+    <div class="content">
+
+        <div class="coming-soon">COMING SOON</div>
+
+        <div class="glass-box">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <button id="signupBtn">Sign Up</button>
+        </div>
+
+        <div id="successMessage" class="success" style="display:none;">You're on the list.</div>
+
+        <div class="bottom-text">FOR RUNNERS.</div>
+
+    </div>
+
+    <!-- AI CHAT BUBBLE -->
+    <div class="chat-bubble">AI</div>
+
+    <script>
+
+        /* ---------- PRELOADER ---------- */
+        window.onload = () => {
+            const loader = document.getElementById("preloader");
+            setTimeout(() => {
+                loader.style.opacity = "0";
+                loader.style.transition = "1s";
+                setTimeout(() => { loader.style.display = "none"; }, 900);
+            }, 900);
+        };
+
+        /* ---------- EMAIL SUCCESS ---------- */
+        document.getElementById("signupBtn").addEventListener("click", function(event) {
+            const msg = document.getElementById("successMessage");
+            msg.style.display = "block";
+            msg.style.opacity = "1";
+            document.getElementById("email").value = "";
+        });
+
+    </script>
+
+</body>
+</html>
