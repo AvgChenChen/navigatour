@@ -16,6 +16,13 @@
             color: #fff;
             min-height: 100vh;
             overflow-x: hidden;
+            animation: breathing 8s ease-in-out infinite;
+        }
+
+        @keyframes breathing {
+            0% { background-color: #000; }
+            50% { background-color: #0a0a0a; }
+            100% { background-color: #000; }
         }
 
         /* PRELOADER */
@@ -28,6 +35,7 @@
             align-items: center;
             z-index: 9999;
         }
+
         .loader {
             width: 35px;
             height: 35px;
@@ -35,32 +43,35 @@
             border-top-color: transparent;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            filter: drop-shadow(0 0 10px #fff);
         }
+
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* SUBTLE FLOATING LOGO */
         .floating-logo {
             position: fixed;
-            top: 15px;
+            top: 18px;
             left: 20px;
             font-size: 28px;
             letter-spacing: 3px;
-            color: #fff;
-            animation: floatSubtle 10s ease-in-out infinite;
+            animation: floatSlow 9s ease-in-out infinite;
             text-transform: lowercase;
             z-index: 20;
         }
-        @keyframes floatSubtle {
-            0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-            50% { transform: translateY(-4px) rotateX(3deg) rotateY(3deg); }
+
+        @keyframes floatSlow {
+            0%   { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+            50%  { transform: translateY(-4px) rotateX(3deg) rotateY(3deg); }
             100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
         }
 
         /* PARTICLES */
         .particles {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            position: fixed; inset: 0;
+            pointer-events: none;
+            z-index: 0;
         }
+
         .particles span {
             position: absolute;
             width: 3px; height: 3px;
@@ -68,57 +79,67 @@
             border-radius: 50%;
             animation: floatUp linear infinite;
         }
+
         @keyframes floatUp {
             0% { transform: translateY(0); opacity: 0.4; }
             100% { transform: translateY(-100vh); opacity: 0; }
         }
 
-        /* CENTER CONTENT */
+        /* MAIN CONTENT */
         .content {
             position: relative;
             z-index: 5;
-            width: 100%;
             min-height: 100vh;
-            padding: 40px 20px;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            padding: 40px 20px;
             text-align: center;
         }
 
-        /* TYPING EFFECT */
+        /* TYPING EFFECT (NO GLOW, NO BLINK AFTER FINISH) */
         .coming-soon {
             font-size: clamp(32px, 6vw, 55px);
             letter-spacing: 4px;
+
             white-space: nowrap;
             overflow: hidden;
-            width: 0; 
+
             border-right: 4px solid #fff;
+            width: 0;
             animation: typing 2s steps(12) forwards;
         }
 
-        /* remove cursor after typing */
+        @keyframes typing {
+            to { width: 100%; }
+        }
+
         .coming-soon.finished {
             border-right: none;
         }
 
-        @keyframes typing { to { width: 100%; } }
-
-        /* GLASS SIGNUP BAR */
+        /* GLASS BOX REPOSITIONED & VISIBLE */
         .glass-box {
-            margin-top: 40px;
-            padding: 20px 25px;
-            background: rgba(255,255,255,0.07);
+            margin-top: 25px;
+            padding: 18px 22px;
             backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.10);
             border-radius: 14px;
             border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 4px 25px rgba(255,255,255,0.12);
+
             display: flex;
             gap: 10px;
-            opacity: 0;
-            animation: fadeIn 2s forwards 2.2s;
             width: clamp(260px, 70%, 420px);
+
+            animation: fadeIn 1.6s ease-out forwards 0.8s;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
         input[type="email"] {
@@ -128,46 +149,52 @@
             border: none;
             background: rgba(255,255,255,0.25);
             color: white;
-            font-family: Arial, sans-serif;
+            font-size: 15px;
         }
 
         button {
-            padding: 12px 18px;
+            padding: 12px 20px;
+            border: none;
             background: #fff;
             color: #000;
-            border: none;
+            font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
         }
 
-        /* SUCCESS TEXT */
+        button:hover {
+            opacity: 0.85;
+        }
+
+        /* SUCCESS MESSAGE */
         #successMessage {
-            margin-top: 10px;
+            margin-top: 12px;
             opacity: 0;
-            transition: 0.6s;
-            font-size: 16px;
+            transition: 0.6s ease;
         }
 
         /* FOR RUNNERS */
         .bottom-text {
-            margin-top: 60px;
-            font-size: clamp(14px, 3vw, 20px);
+            margin-top: 45px;
+            font-size: clamp(14px, 2.5vw, 18px);
             letter-spacing: 4px;
             opacity: 0;
-            transform: translateY(20px);
-            animation: rise 2s forwards 2.8s;
-        }
-        @keyframes rise {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            transform: translateY(15px);
+            animation: rise 1.6s forwards 1.4s;
         }
 
-        /* MOBILE OPTIMIZATION */
+        @keyframes rise {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MOBILE RESPONSE */
         @media (max-width: 600px) {
             .glass-box { flex-direction: column; width: 90%; }
             button { width: 100%; }
-            .floating-logo { font-size: 22px; left: 15px; }
+            .floating-logo { font-size: 22px; left: 14px; }
         }
 
     </style>
@@ -178,22 +205,24 @@
     <!-- PRELOADER -->
     <div id="preloader"><div class="loader"></div></div>
 
-    <!-- SUBTLE NAVIGATOUR FLOATING LOGO -->
+    <!-- LOGO -->
     <div class="floating-logo">navigatour</div>
 
     <!-- PARTICLES -->
     <div class="particles">
         <span style="left:12%; animation-duration: 11s;"></span>
-        <span style="left:34%; animation-duration: 13s;"></span>
+        <span style="left:34%; animation-duration: 14s;"></span>
         <span style="left:52%; animation-duration: 9s;"></span>
         <span style="left:68%; animation-duration: 16s;"></span>
         <span style="left:82%; animation-duration: 12s;"></span>
     </div>
 
+    <!-- MAIN CONTENT -->
     <div class="content">
 
         <div class="coming-soon" id="typingText">COMING SOON</div>
 
+        <!-- EMAIL BOX DIRECTLY UNDER HEADING -->
         <div class="glass-box">
             <input type="email" id="email" placeholder="Enter your email">
             <button id="signupBtn">Sign Up</button>
@@ -216,16 +245,15 @@
             }, 800);
         };
 
-        /* Remove cursor at end */
+        /* STOP CURSOR AFTER TYPING */
         setTimeout(() => {
             document.getElementById("typingText").classList.add("finished");
         }, 2000);
 
-        /* Email success */
+        /* EMAIL SUCCESS */
         document.getElementById("signupBtn").onclick = () => {
             const msg = document.getElementById("successMessage");
             msg.style.opacity = "1";
-            msg.style.transition = "1s";
             document.getElementById("email").value = "";
         };
     </script>
