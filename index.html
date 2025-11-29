@@ -9,38 +9,55 @@
 
 <body class="bg-gray-100 text-gray-900">
 
-  <!-- MAIN CONTAINER -->
+  <!-- MAIN WRAPPER -->
   <div class="min-h-screen flex items-center justify-center px-6">
 
+    <!-- CARD -->
     <div class="bg-white max-w-xl w-full p-10 rounded-2xl shadow-xl">
 
-      <!-- Header -->
-      <h1 class="text-3xl font-bold text-center mb-4">
+      <!-- ICON -->
+      <div class="flex justify-center mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             fill="none" 
+             viewBox="0 0 24 24" 
+             stroke-width="1.5" 
+             stroke="currentColor" 
+             class="w-12 h-12 text-blue-600">
+          <path stroke-linecap="round" stroke-linejoin="round" 
+                d="M15.75 9V5.25m0 0L18 7.5m-2.25-2.25L13.5 7.5m-7.5
+                   6.75H6a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 012.25-2.25h3.75m3 
+                   9H18a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-2.25-2.25h-.75" />
+        </svg>
+      </div>
+
+      <!-- TITLE -->
+      <h1 class="text-3xl font-bold text-center mb-3">
         Running Route Experience Survey
       </h1>
 
-      <p class="text-center text-gray-600 mb-8 text-lg">
-        This quick survey asks about your running habits and how you usually pick the routes you run.
+      <!-- DESCRIPTION -->
+      <p class="text-center text-gray-600 mb-6 text-lg leading-relaxed">
+        This brief survey explores how runners plan their routes and what factors shape their running experience.
+        It takes <span class="font-semibold">1–2 minutes</span> and does not require any personal information.
       </p>
 
-      <!-- Button -->
+      <!-- BUTTON -->
       <div class="text-center">
         <a 
           href="https://docs.google.com/forms/d/1cL1GKxNO8oVb0P6dS-wsXKmFQn3hEYNh08A9_EvLna8/viewform"
           target="_blank"
-          class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-3 rounded-lg transition"
+          class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-10 py-3 rounded-xl transition shadow-sm"
         >
-          Take the Survey
+          Start Survey
         </a>
       </div>
 
-      <!-- Footer note -->
-      <p class="text-center text-gray-400 text-sm mt-6">
-        This survey is anonymous. No business, organization, or brand is being promoted.
+      <!-- FOOTER -->
+      <p class="text-center text-xs text-gray-400 mt-6">
+        Responses are anonymous and used strictly for research purposes.
       </p>
 
     </div>
-
   </div>
 
 </body>
