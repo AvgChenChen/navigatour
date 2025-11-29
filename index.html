@@ -1,262 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigatour – Coming Soon</title>
-
-    <link href="https://fonts.cdnfonts.com/css/couture" rel="stylesheet">
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'COUTURE', sans-serif;
-            background: #000;
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            animation: breathing 8s ease-in-out infinite;
-        }
-
-        @keyframes breathing {
-            0% { background-color: #000; }
-            50% { background-color: #0a0a0a; }
-            100% { background-color: #000; }
-        }
-
-        /* PRELOADER */
-        #preloader {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .loader {
-            width: 35px;
-            height: 35px;
-            border: 4px solid #fff;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* SUBTLE FLOATING LOGO */
-        .floating-logo {
-            position: fixed;
-            top: 18px;
-            left: 20px;
-            font-size: 28px;
-            letter-spacing: 3px;
-            animation: floatSlow 9s ease-in-out infinite;
-            text-transform: lowercase;
-            z-index: 20;
-        }
-
-        @keyframes floatSlow {
-            0%   { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-            50%  { transform: translateY(-4px) rotateX(3deg) rotateY(3deg); }
-            100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-        }
-
-        /* PARTICLES */
-        .particles {
-            position: fixed; inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particles span {
-            position: absolute;
-            width: 3px; height: 3px;
-            background: rgba(255,255,255,0.35);
-            border-radius: 50%;
-            animation: floatUp linear infinite;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0); opacity: 0.4; }
-            100% { transform: translateY(-100vh); opacity: 0; }
-        }
-
-        /* MAIN CONTENT */
-        .content {
-            position: relative;
-            z-index: 5;
-            min-height: 100vh;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        /* TYPING EFFECT (NO GLOW, NO BLINK AFTER FINISH) */
-        .coming-soon {
-            font-size: clamp(32px, 6vw, 55px);
-            letter-spacing: 4px;
-
-            white-space: nowrap;
-            overflow: hidden;
-
-            border-right: 4px solid #fff;
-            width: 0;
-            animation: typing 2s steps(12) forwards;
-        }
-
-        @keyframes typing {
-            to { width: 100%; }
-        }
-
-        .coming-soon.finished {
-            border-right: none;
-        }
-
-        /* GLASS BOX REPOSITIONED & VISIBLE */
-        .glass-box {
-            margin-top: 25px;
-            padding: 18px 22px;
-            backdrop-filter: blur(12px);
-            background: rgba(255,255,255,0.10);
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,0.2);
-
-            display: flex;
-            gap: 10px;
-            width: clamp(260px, 70%, 420px);
-
-            animation: fadeIn 1.6s ease-out forwards 0.8s;
-            opacity: 0;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        input[type="email"] {
-            flex: 1;
-            padding: 12px;
-            border-radius: 6px;
-            border: none;
-            background: rgba(255,255,255,0.25);
-            color: white;
-            font-size: 15px;
-        }
-
-        button {
-            padding: 12px 20px;
-            border: none;
-            background: #fff;
-            color: #000;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            opacity: 0.85;
-        }
-
-        /* SUCCESS MESSAGE */
-        #successMessage {
-            margin-top: 12px;
-            opacity: 0;
-            transition: 0.6s ease;
-        }
-
-        /* FOR RUNNERS */
-        .bottom-text {
-            margin-top: 45px;
-            font-size: clamp(14px, 2.5vw, 18px);
-            letter-spacing: 4px;
-            opacity: 0;
-            transform: translateY(15px);
-            animation: rise 1.6s forwards 1.4s;
-        }
-
-        @keyframes rise {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* MOBILE RESPONSE */
-        @media (max-width: 600px) {
-            .glass-box { flex-direction: column; width: 90%; }
-            button { width: 100%; }
-            .floating-logo { font-size: 22px; left: 14px; }
-        }
-
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running Route Survey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-gray-100 text-gray-900">
 
-    <!-- PRELOADER -->
-    <div id="preloader"><div class="loader"></div></div>
+  <!-- MAIN CONTAINER -->
+  <div class="min-h-screen flex items-center justify-center px-6">
 
-    <!-- LOGO -->
-    <div class="floating-logo">navigatour</div>
+    <div class="bg-white max-w-xl w-full p-10 rounded-2xl shadow-xl">
 
-    <!-- PARTICLES -->
-    <div class="particles">
-        <span style="left:12%; animation-duration: 11s;"></span>
-        <span style="left:34%; animation-duration: 14s;"></span>
-        <span style="left:52%; animation-duration: 9s;"></span>
-        <span style="left:68%; animation-duration: 16s;"></span>
-        <span style="left:82%; animation-duration: 12s;"></span>
+      <!-- Header -->
+      <h1 class="text-3xl font-bold text-center mb-4">
+        Running Route Experience Survey
+      </h1>
+
+      <p class="text-center text-gray-600 mb-8 text-lg">
+        We're collecting anonymous data to better understand how runners choose and experience their running routes. 
+        This information will help identify common challenges and areas where current tools may be lacking.
+      </p>
+
+      <!-- Button -->
+      <div class="text-center">
+        <a 
+          href="https://docs.google.com/forms/d/1cL1GKxNO8oVb0P6dS-wsXKmFQn3hEYNh08A9_EvLna8/viewform"
+          target="_blank"
+          class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-3 rounded-lg transition"
+        >
+          Take the Survey
+        </a>
+      </div>
+
+      <!-- Footer note -->
+      <p class="text-center text-gray-400 text-sm mt-6">
+        This survey is anonymous. No business, organization, or brand is being promoted.
+      </p>
+
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="content">
-
-        <div class="coming-soon" id="typingText">COMING SOON</div>
-
-        <!-- EMAIL BOX DIRECTLY UNDER HEADING -->
-        <div class="glass-box">
-            <input type="email" id="email" placeholder="Enter your email">
-            <button id="signupBtn">Sign Up</button>
-        </div>
-
-        <div id="successMessage">You're on the list.</div>
-
-        <div class="bottom-text">FOR RUNNERS.</div>
-
-    </div>
-
-    <script>
-        /* PRELOADER */
-        window.onload = () => {
-            const loader = document.getElementById("preloader");
-            setTimeout(() => {
-                loader.style.transition = "1s";
-                loader.style.opacity = "0";
-                setTimeout(() => loader.style.display = "none", 800);
-            }, 800);
-        };
-
-        /* STOP CURSOR AFTER TYPING */
-        setTimeout(() => {
-            document.getElementById("typingText").classList.add("finished");
-        }, 2000);
-
-        /* EMAIL SUCCESS */
-        document.getElementById("signupBtn").onclick = () => {
-            const msg = document.getElementById("successMessage");
-            msg.style.opacity = "1";
-            document.getElementById("email").value = "";
-        };
-    </script>
+  </div>
 
 </body>
 </html>
